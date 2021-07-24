@@ -17,6 +17,15 @@ describe('<MenuLink />', () => {
     expect(screen.getByRole('link', { name: 'children' })).toHaveAttribute('target', '_blank');
   });
 
+  it('should render internal link from next', () => {
+    renderTheme(
+      <MenuLink link="/oi" newTab={true}>
+        children
+      </MenuLink>,
+    );
+    expect(screen.getByRole('link', { name: 'children' })).toHaveAttribute('target', '_blank');
+  });
+
   it('should render a link', () => {
     const { container } = renderTheme(<MenuLink link="https://www.google.com.br/">children</MenuLink>);
     expect(container.firstChild).toMatchInlineSnapshot(`

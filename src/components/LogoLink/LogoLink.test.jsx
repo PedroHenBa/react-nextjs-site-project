@@ -14,6 +14,11 @@ describe('<LogoLink />', () => {
     expect(screen.getByAltText('Opa')).toHaveAttribute('src', 'image.png');
   });
 
+  it('should internal link', () => {
+    renderTheme(<LogoLink link="/target" text="Opa" srcImage="image.png" />);
+    expect(screen.getByAltText('Opa')).toHaveAttribute('src', 'image.png');
+  });
+
   it('should match snapshot', () => {
     const { container } = renderTheme(<LogoLink link="#target" text="Opa" srcImage="image.png" />);
     expect(container.firstChild).toMatchSnapshot();

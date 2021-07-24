@@ -1,8 +1,16 @@
 import { loadPages } from '../api/load-pages';
 import Home from '../templates/Home';
 import P from 'prop-types';
+import { useRouter } from 'next/router';
+import { Loading } from '../templates/Loading';
 
 export default function Page({ data }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
   return <Home data={data} />;
 }
 
@@ -33,7 +41,7 @@ export const getStaticProps = async (context) => {
     console.log(e);
   }
 
-  if (!data) {
+  if (!data || !data.length) {
     return {
       notFound: true,
     };
